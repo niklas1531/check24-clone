@@ -2,12 +2,29 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const FlightAndHotel = ({ inputs, setInputs }) => {
+const FlightAndHotel = ({ inputs, setInputs, setFlightsHotels }) => {
 
 
     const navigate = useNavigate()
-    const startSearch = () => {
-        navigate('/results')
+    const startSearch = async (e) => {
+
+        e.preventDefault()
+        try {
+            const outbounddepartureairport = inputs.outbounddepartureairport
+            const outboundarrivalairport = inputs.outboundarrivalairport
+            const departuredate = inputs.departuredate
+            const returndate = inputs.returndate
+            const countadults = inputs.countadults
+            const countchildren = inputs.countchildren
+            const response = await axios.get('http://localhost:8000/findflightshotels', { params: {outbounddepartureairport,outboundarrivalairport, departuredate, returndate, countadults,countchildren} })
+            const success = response.status === 200
+            setFlightsHotels(response.data)
+            console.log(response.data)
+            if (success) navigate('/results')
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const handleChange = (e) => {
@@ -23,14 +40,15 @@ const FlightAndHotel = ({ inputs, setInputs }) => {
     return (<form className="search" onSubmit={startSearch}>
         <div className="text-field-wrapper">
             <label for='reiseziel'>Reiseziel oder Hotel</label>
-            <select value={inputs.outboundarrivalairport} onChange={handleChange} name='outboundarrivalairport'>
-                <option name="PMI">PMI</option>
+            <select value={inputs.outboundarrivalairport} onChange={e => setInputs(prev => ({...prev, ["outboundarrivalairport"]: e.target.value}))} name='outboundarrivalairport'>
+                <option >PMI</option>
+                <option ></option>
             </select>
             
         </div>
         <div className="text-field-wrapper">
             <label for='abflughafen'>Abflughafen</label>
-            <select value={inputs.outbounddepartureairport} onChange={handleChange} name='outbounddepartureairport'>
+            <select value={inputs.outbounddepartureairport} onChange={e => setInputs(prev => ({...prev, ["outbounddepartureairport"]: e.target.value}))} name='outbounddepartureairport'>
                 <option name="AMS">AMS</option>
                 <option name="BER">BER</option>
                 <option name="BLL">BLL</option>

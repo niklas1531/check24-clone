@@ -2,6 +2,8 @@ import Nav from "../components/Nav"
 import Hotel from "../components/Hotel"
 import FlightAndHotel from "../components/FlightAndHotel"
 import LoginModal from "../components/LoginModal"
+import Hotels from "../components/Hotels"
+import FlightsHotels from "../components/FlightsHotels"
 
 const ResultPage = ({hotels, setHotels, flightsHotels, setFlightsHotels,inputs, setInputs, Login, changeShowLogin,flightAndHotel, changeToFlightAndHotel, changeToHotel }) => {
     
@@ -21,7 +23,7 @@ const ResultPage = ({hotels, setHotels, flightsHotels, setFlightsHotels,inputs, 
                 </div>
             </section>
             <section className="results-container">
-                Test
+                {flightAndHotel ? <FlightsHotels flightsHotels={flightsHotels}/> : <Hotels hotels={hotels}/>}
             </section>
         </div>
         {Login && <LoginModal changeShowLogin={changeShowLogin}/>}

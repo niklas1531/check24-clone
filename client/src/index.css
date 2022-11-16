@@ -49,6 +49,7 @@ body {
     background: transparent;
     border: none;
 }
+
 /* Home */
 
 .home-bg {
@@ -102,11 +103,11 @@ body {
 }
 
 /* Login Modal */
-.close-button{
+.close-button {
     float: right;
     border: none;
     background: transparent;
-   
+
 }
 
 .close-button img {
@@ -129,20 +130,23 @@ body {
     z-index: 2;
 }
 
-.loginmodal h2 ,
+.loginmodal h2,
 .loginmodal p {
     color: #fff;
     font-style: italic;
     margin-left: 5%;
 }
+
 .loginmodal form {
     width: 90%;
     margin-left: 5%;
 }
+
 .loginmodal form button {
     width: 20%;
     margin-left: 40%;
 }
+
 .loginmodal input {
     border-radius: 3px;
     width: 100%;
@@ -253,26 +257,31 @@ body {
 .resultpage {
     display: flex;
     justify-content: space-between;
+
 }
 
 .filter-container {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
         rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    width: 30%;
+    width: 25%;
     text-align: left;
     height: 100vh;
+    padding: 20px 30px;
+    box-sizing: border-box;
 }
 
 .results-container {
-    width: 70%;
+    width: 75%;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding: 20px 40px;
 }
 
 .filter-container .filter {
     width: 85%;
+    height: 60%;
     margin-top: 15px;
     padding: 10px;
 }
@@ -283,3 +292,48 @@ body {
     border-bottom-right-radius: 5px;
 }
 
+.filter-container .view-button {
+    font-size: 12px;
+}
+
+.filter-container .text-field-wrapper label {
+    font-size: 10px;
+}
+
+/* Loaded Hotels */
+
+.loadedhotels {
+    margin: 5px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(74, 74, 74);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+}
+
+.loadedhotels .imgPlaceholder {
+    width: 40%;
+}
+
+.loadedhotels .details {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.loadedhotels .details button {
+    width: 50%;
+    background-color: var(--blue);
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 20px;
+    margin: 10px 0 0 0;
+    border-radius: 3px;
+    border: none;
+}
+
+.loadedhotels .details button:hover {
+    background-color: var(--darkBlue);
+}
+
+/* Loaded Flights & Hotels */

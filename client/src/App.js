@@ -15,8 +15,8 @@ const App = () => {
     returndate: "",
     countadults: "",
     countchildren: "",
-    outbounddepartureairport : "",
-    outboundarrivalairport: "",
+    outbounddepartureairport : [],
+    outboundarrivalairport: [],
     room: ""
 
 })

@@ -6,9 +6,9 @@ const {MongoClient} = require('mongodb')
 
 const app = express()
 const uri = 'mongodb+srv://niklasminth:check24challenge@cluster0.cgwhtg9.mongodb.net/Cluster0?retryWrites=true&w=majority'
-
-app.use(cors())
 app.use(express.json())
+app.use(cors())
+
 
 app.get('/', (req, res) => {
     res.json('Hello to my app')
@@ -70,19 +70,36 @@ app.get('/hotel', async (req, res) => {
 //Get Hotel Search
 app.get('/findhotels', async (req, res) => {
     const client = new MongoClient(uri)
-    const outboundarrivalairport = req.query.outboundarrivalairport
-    // const departuredate = req.query.departuredate
-    // const returndate = req.query.returndate
-    const countadults = req.query.countadults
-    const countchildren = req.query.countchildren
+    const {outboundarrivalairport, departuredate, returndate, countadults, countchildren} = req.query
 
     try {
         await client.connect()
         const database = client.db('app-data')
         const hotels = database.collection('offers')
 
-        const query = {countadults: "1"}
+        const query = {outboundarrivalairport: outboundarrivalairport, departuredate: {$regex: departuredate}, returndate: {$regex: returndate}, countadults: countadults, countchildren: countchildren }
+        console.log(query)
         const returnedHotels = await hotels.find(query).toArray()
+        res.send(returnedHotels)
+
+    } finally {
+        await client.close()
+    }
+})
+
+// Get Flight&Hotel Search
+app.get('/findflightshotels', async (req, res) => {
+    const client = new MongoClient(uri)
+    const {outbounddepartureairport,outboundarrivalairport, departuredate, returndate, countadults, countchildren} = req.query
+    console.log(outbounddepartureairport,outboundarrivalairport,departuredate,returndate,countadults,countchildren)
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const hotels = database.collection('offers')
+
+        const query = {outbounddepartureairport: outbounddepartureairport, outboundarrivalairport: outboundarrivalairport, departuredate: {$regex: departuredate}, returndate: {$regex: returndate}, countadults: countadults, countchildren: countchildren }
+        console.log(query)
+        const returnedHotels = await hotels.find(query).sort().toArray()
         res.send(returnedHotels)
 
     } finally {
