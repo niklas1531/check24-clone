@@ -5,7 +5,7 @@ import LoginModal from '../components/LoginModal'
 import Nav from '../components/Nav'
 
 
-const Home = ({inputs, setInputs, Login, changeShowLogin,flightAndHotel,  changeToFlightAndHotel, changeToHotel}) => {
+const Home = ({setFlightsHotels, flightsHotels, hotels, setHotels,inputs, setInputs, Login, changeShowLogin,flightAndHotel,  changeToFlightAndHotel, changeToHotel}) => {
 
     return (<div>
         <Nav changeShowLogin={changeShowLogin}/>
@@ -16,7 +16,8 @@ const Home = ({inputs, setInputs, Login, changeShowLogin,flightAndHotel,  change
             <button className='view-button' disabled={flightAndHotel ? true : false} onClick={changeToFlightAndHotel}>Flug & Hotel</button>
             <button className='view-button' disabled={flightAndHotel ? false : true} onClick={changeToHotel}>Hotel</button>
             <div className='search-window'>
-                {flightAndHotel ? <FlightAndHotel inputs={inputs} setInputs={setInputs}/> : <Hotel inputs={inputs} setInputs={setInputs}/>}
+                {flightAndHotel ? <FlightAndHotel inputs={inputs} setInputs={setInputs} setFlightsHotels={setFlightsHotels} flightsHotels={flightsHotels}/> : 
+                <Hotel inputs={inputs} setInputs={setInputs} hotels={hotels} setHotels={setHotels}/>}
             </div>
         </div>
        {Login && <LoginModal changeShowLogin={changeShowLogin}/>}

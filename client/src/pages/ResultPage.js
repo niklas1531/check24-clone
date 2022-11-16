@@ -3,7 +3,7 @@ import Hotel from "../components/Hotel"
 import FlightAndHotel from "../components/FlightAndHotel"
 import LoginModal from "../components/LoginModal"
 
-const ResultPage = ({inputs, setInputs, Login, changeShowLogin,flightAndHotel, changeToFlightAndHotel, changeToHotel }) => {
+const ResultPage = ({hotels, setHotels, flightsHotels, setFlightsHotels,inputs, setInputs, Login, changeShowLogin,flightAndHotel, changeToFlightAndHotel, changeToHotel }) => {
     
     return (
     <div >
@@ -15,7 +15,8 @@ const ResultPage = ({inputs, setInputs, Login, changeShowLogin,flightAndHotel, c
                     <button className='view-button' disabled={flightAndHotel ? true : false} onClick={changeToFlightAndHotel}>Flug & Hotel</button>
                     <button className='view-button' disabled={flightAndHotel ? false : true} onClick={changeToHotel}>Hotel</button>
                     <div className='search-window'>
-                    {flightAndHotel ? <FlightAndHotel inputs={inputs} setInputs={setInputs}/> : <Hotel inputs={inputs} setInputs={setInputs}/>}
+                    {flightAndHotel ? <FlightAndHotel inputs={inputs} setInputs={setInputs} setFlightsHotels={setFlightsHotels} flightsHotels={flightsHotels}/> : 
+                <Hotel inputs={inputs} setInputs={setInputs} hotels={hotels} setHotels={setHotels}/>}
                     </div>
                 </div>
             </section>

@@ -49,7 +49,7 @@ const LoginModal = ({changeShowLogin}) => {
                 <input type='submit' value={!login ? "Create Account" : "Log In"}/>
                 <p>{error}</p>
                 <hr />
-                <p>Already have an account? <button onClick={changeLogin}>Log in</button></p>
+                <p>Already have an account?</p> <button onClick={changeLogin}>Log in</button>
             </form>
         </div>)
 }

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
-const Hotel = ({inputs, setInputs}) => {
+const Hotel = ({inputs, setInputs, setHotels, hotels}) => {
     
     const handleChange = (e) => {
         console.log('e', e)
@@ -17,14 +18,32 @@ const Hotel = ({inputs, setInputs}) => {
 
     const navigate = useNavigate()
     const startSearch = async (e) => {
-        navigate('/results')
+        // navigate('/results')
         e.preventDefault()
+        try {
+            const outboundarrivalairport = inputs.outboundarrivalairport
+            const departuredate = inputs.departuredate
+            const returndate = inputs.returndate
+            const countadults = inputs.countadults
+            const countchildren = inputs.countchildren
+            const response = await axios.get('http://localhost:8000/findhotels', {outboundarrivalairport, departuredate, returndate, countadults, countchildren})
+            // console.log(response)
+            const success = response.status === 200
+            setHotels(response.data)
+            console.log(response.data)
+            if (success) navigate('/results')
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (<form className="search" onSubmit={startSearch}>
         <div className="text-field-wrapper">
             <label for='reiseziel'>Reiseziel oder Hotel</label>
-            <input  required={true} type='text' placeholder="Stadt, Region oder Unterkunft" name='outboundarrivalairport' value={inputs.outboundarrivalairport} onChange={handleChange} />
+            <select value={inputs.outboundarrivalairport} onChange={handleChange} name='outboundarrivalairport'>
+                <option name="PMI">PMI</option>
+            </select>
         </div>
         <div className="multi-input-wrapper">
             <div className="text-field-wrapper multi-input-2">

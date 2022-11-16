@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
 // Get all hotels
 app.get('/hotels', async (req, res) => {
     const client = new MongoClient(uri)
-    // const userId = req.query.userId
 
     try {
         await client.connect()
@@ -36,7 +35,6 @@ app.get('/hotels', async (req, res) => {
 // Get first 100 offers
 app.get('/offers', async (req, res) => {
     const client = new MongoClient(uri)
-    // const userId = req.query.userId
 
     try {
         await client.connect()
@@ -69,6 +67,28 @@ app.get('/hotel', async (req, res) => {
     }
 })
 
+//Get Hotel Search
+app.get('/findhotels', async (req, res) => {
+    const client = new MongoClient(uri)
+    const outboundarrivalairport = req.query.outboundarrivalairport
+    // const departuredate = req.query.departuredate
+    // const returndate = req.query.returndate
+    const countadults = req.query.countadults
+    const countchildren = req.query.countchildren
+
+    try {
+        await client.connect()
+        const database = client.db('app-data')
+        const hotels = database.collection('offers')
+
+        const query = {countadults: "1"}
+        const returnedHotels = await hotels.find(query).toArray()
+        res.send(returnedHotels)
+
+    } finally {
+        await client.close()
+    }
+})
 
 
 

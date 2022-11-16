@@ -3,6 +3,8 @@ import Home from './pages/Home'
 import { useState } from 'react'
 import ResultPage from './pages/ResultPage';
 const App = () => {
+  const [hotels, setHotels] = useState(null)
+  const [flightsHotels, setFlightsHotels] = useState(null)
   const [flightAndHotel, setFlightAndHotel] = useState(true)
   const [Login, showLogin] = useState(false)
   const changeToFlightAndHotel = () => {
@@ -28,8 +30,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home  inputs={inputs} setInputs={setInputs} Login={Login} changeShowLogin={changeShowLogin} flightAndHotel={flightAndHotel} setFlightAndHotel={setFlightAndHotel} changeToFlightAndHotel={changeToFlightAndHotel} changeToHotel={changeToHotel} />} />
-        <Route path='/results' element={<ResultPage inputs={inputs} setInputs={setInputs}  Login={Login} changeShowLogin={changeShowLogin} flightAndHotel={flightAndHotel} setFlightAndHotel={setFlightAndHotel} changeToFlightAndHotel={changeToFlightAndHotel} changeToHotel={changeToHotel} />} />
+        <Route path='/' element={<Home  hotels={hotels} setHotels={setHotels} flightsHotels={flightsHotels} setFlightsHotels={setFlightsHotels} inputs={inputs} setInputs={setInputs} Login={Login} changeShowLogin={changeShowLogin} flightAndHotel={flightAndHotel} setFlightAndHotel={setFlightAndHotel} changeToFlightAndHotel={changeToFlightAndHotel} changeToHotel={changeToHotel} />} />
+        <Route path='/results' element={<ResultPage hotels={hotels} setHotels={setHotels} flightsHotels={flightsHotels} setFlightsHotels={setFlightsHotels} inputs={inputs} setInputs={setInputs}  Login={Login} changeShowLogin={changeShowLogin} flightAndHotel={flightAndHotel} setFlightAndHotel={setFlightAndHotel} changeToFlightAndHotel={changeToFlightAndHotel} changeToHotel={changeToHotel} />} />
       </Routes>
     </BrowserRouter>
   );

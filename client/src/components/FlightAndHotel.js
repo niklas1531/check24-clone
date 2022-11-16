@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
+const FlightAndHotel = ({ inputs, setInputs }) => {
 
-const FlightAndHotel = ({inputs, setInputs}) => {
-    
 
     const navigate = useNavigate()
     const startSearch = () => {
@@ -23,13 +23,53 @@ const FlightAndHotel = ({inputs, setInputs}) => {
     return (<form className="search" onSubmit={startSearch}>
         <div className="text-field-wrapper">
             <label for='reiseziel'>Reiseziel oder Hotel</label>
-            <input required={true} type='text' placeholder="Alle Reiseziele zum entdecken" name='outboundarrivalairport'  value={inputs.outboundarrivalairport}
-                            onChange={handleChange}
- />
+            <select value={inputs.outboundarrivalairport} onChange={handleChange} name='outboundarrivalairport'>
+                <option name="PMI">PMI</option>
+            </select>
+            
         </div>
         <div className="text-field-wrapper">
             <label for='abflughafen'>Abflughafen</label>
-            <input required={true} type='text' placeholder='Deutschland - Alle Abflughäfen' name='outbounddepartureairport' value={inputs.outbounddepartureairport} onChange={handleChange} />
+            <select value={inputs.outbounddepartureairport} onChange={handleChange} name='outbounddepartureairport'>
+                <option name="AMS">AMS</option>
+                <option name="BER">BER</option>
+                <option name="BLL">BLL</option>
+                <option name="BRE">BRU</option>
+                <option name="BSL">BSL</option>
+                <option name="CGN">CGN</option>
+                <option name="DRS">DRS</option>
+                <option name="DTM">DTM</option>
+                <option name="DUS">DUS</option>
+                <option name="EIN">EIN</option>
+                <option name="ERF">ERF</option>
+                <option name="FDH">FDH</option>
+                <option name="FKB">FKB</option>
+                <option name="FMM">FMM</option>
+                <option name="FMO">FMO</option>
+                <option name="FRA">FRA</option>
+                <option name="GVA">GVA</option>
+                <option name="HAJ">HAJ</option>
+                <option name="HAM">HAM</option>
+                <option name="INN">INN</option>
+                <option name="KRK">KRK</option>
+                <option name="KSF">KSF</option>
+                <option name="LBC">LBC</option>
+                <option name="LEJ">LEJ</option>
+                <option name="LNZ">LNZ</option>
+                <option name="LUX">LUX</option>
+                <option name="MUC">MUC</option>
+                <option name="NRN">NRN</option>
+                <option name="NUE">NUE</option>
+                <option name="PAD">PAD</option>
+                <option name="PRG">PRG</option>
+                <option name="SCN">SCN</option>
+                <option name="STR">STR</option>
+                <option name="SXB">SXB</option>
+                <option name="SZG">SZG</option>
+                <option name="VIE">VIE</option>
+                <option name="ZRH">ZRH</option>
+            </select>
+
         </div>
         <div className="multi-input-wrapper">
             <div className="text-field-wrapper multi-input-2">
@@ -44,15 +84,15 @@ const FlightAndHotel = ({inputs, setInputs}) => {
         <div className="multi-input-wrapper">
             <div className="text-field-wrapper multi-input">
                 <label for='erwachsene'>Erwachsene</label>
-                <input required={true} type='number' placeholder='2' name='countadults' value={inputs.countadults} onChange={handleChange}/>
+                <input required={true} type='number' placeholder='2' name='countadults' value={inputs.countadults} onChange={handleChange} />
             </div>
             <div className="text-field-wrapper multi-input">
                 <label for='kinder'>Kinder</label>
-                <input required={true} type='number' placeholder='1' name='countchildren' value={inputs.countchildren} onChange={handleChange}/>
+                <input required={true} type='number' placeholder='1' name='countchildren' value={inputs.countchildren} onChange={handleChange} />
             </div>
             <div className="text-field-wrapper multi-input">
                 <label for='zimmer'>Zimmer</label>
-                <input required={true} type='number' placeholder='1' name='room' value={inputs.room} onChange={handleChange}/>
+                <input required={true} type='number' placeholder='1' name='room' value={inputs.room} onChange={handleChange} />
             </div>
         </div>
         <div className="text-field-wrapper">
