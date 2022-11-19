@@ -5,7 +5,7 @@ To run the application, clone the repository with the link (https://github.com/n
 
 
 ## Setup Client Folder
-### Navigate into the client folder in a second terminal window
+### Navigate into the client folder 
 ![Navigate to Client Folder](./RUN-APPLICATION-IMAGES/NavigateClient.png)
 ### Run the following commands to install all packages
 npm init <br />
@@ -13,7 +13,7 @@ npm i
 ### Start the application
 npm run start
 
-## Setup Server Folder
+## Setup Server Folder in a second terminal window
 ### Navigate into the server folder
 ![Navigate to Server Folder](./RUN-APPLICATION-IMAGES/NavigateServer.png)
 ### Run the following commands to install all packages
