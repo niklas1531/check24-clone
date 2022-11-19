@@ -1,5 +1,8 @@
 # GenDev Holiday Challenge Niklas Minth
 
+## Video Showing all actions
+A video showing all the actions on the site can be found at this <a href="https://niklas1531.github.io/portfolio/#/projekte/check24" target='_blank'>link</a>:
+
 
 ## Projekt
 The project is divided into 2 folders. The **client folder** contains the frontend, the **server folder** contains the backend.
