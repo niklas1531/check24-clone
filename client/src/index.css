@@ -16,42 +16,85 @@ body {
     box-sizing: border-box;
 }
 
+/* Loading Circle */
+.loader {
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 4;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*  - - - - */
+.p-lr {
+    padding: 0 10px;
+}
+
+.p-l {
+    padding-left: 10px;
+}
+
+.p-r {
+    padding-right: 10px;
+}
+
 /* Navbar */
-
-.nav {
+.navigationbar {
     background-color: var(--darkBlue);
-    padding: 10px;
     color: #fff;
-    height: 40px;
-    display: flex;
+    padding: 0 3%;
+}
+
+nav {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    padding: .5rem 0;
+    align-items: center;
     justify-content: space-between;
-
+    display: flex;
 }
 
-.nav .brand {
-    height: 100%;
+nav .brand {
+    height: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-.nav .logo {
+nav .logo {
     filter: invert(1);
-    height: 80%;
+    height: 30px;
     margin-bottom: 10%;
     margin-right: 10px;
 }
 
-.nav h3 {
+nav h3 {
     margin-top: auto;
     margin-bottom: auto;
     font-weight: 400;
 }
 
-.nav button {
+nav button {
     background: transparent;
     border: none;
 }
 
-/* Home */
 
+/* Home */
 .home-bg {
     background: url('https://ctsassets1.check24.de/size=332c155/di=3/nfc=999/source=aHR0cHM6Ly9iaWdhc3NldHMudXJsYXViLmNoZWNrMjQuZGUvZGVmYXVsdC9yZWdpb24vdXJsYXViLzU0Nl9sYXJnZS5qcGc=!c2cbb1/picture.jpg?cts_p=PR&cts_do=desktop&cts_s=lp');
     width: 100%;
@@ -69,8 +112,8 @@ body {
     left: 50%;
     translate: -50% -50%;
     padding: 15px;
-    width: 60%;
-    height: 55%;
+    /* width: 60%; */
+    height: 60%;
 }
 
 .home h1,
@@ -84,11 +127,11 @@ body {
 
 .search-window {
     background-color: var(--yellow);
-    padding: 15px;
-    height: 100%;
+    padding: 20px;
     width: 100%;
     display: flex;
     align-items: center;
+    border-radius: 0 5px 5px 5px;
 }
 
 .primary-button {
@@ -107,7 +150,6 @@ body {
     float: right;
     border: none;
     background: transparent;
-
 }
 
 .close-button img {
@@ -123,7 +165,6 @@ body {
     top: 10%;
     right: 20px;
     max-width: 340px;
-    height: 400px;
     background-color: var(--darkBlue);
     border-radius: 10px;
     padding: 30px;
@@ -163,20 +204,8 @@ body {
 
 
 /* Search */
-
-.search {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.search .text-field-wrapper {
-    margin-top: 0;
+.flightAndHotel .text-field-wrapper {
     position: relative;
-    width: 95%;
-    margin-left: 2.5%;
-    display: flex;
 }
 
 .text-field-wrapper input[type=text],
@@ -204,16 +233,14 @@ body {
     margin: 10px 0 0 0;
     border-radius: 3px;
     border: none;
-
 }
 
 .text-field-wrapper input[type=submit]:hover {
     background-color: var(--darkBlue);
 }
 
-.search label {
+.flightAndHotel label {
     display: inline;
-
     color: rgb(67, 65, 65);
     position: absolute;
     top: 4px;
@@ -221,21 +248,6 @@ body {
     font-size: 15px;
 }
 
-.search .multi-input-wrapper {
-    display: flex;
-}
-
-.search .multi-input {
-    width: 30%;
-}
-
-.search .multi-input-2 {
-    width: 45%;
-}
-
-.search .multi-input-2:first-child {
-    margin-right: 2.5%;
-}
 
 .view-button {
     padding: 12px 30px;
@@ -264,15 +276,15 @@ body {
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
         rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    width: 25%;
+    width: 32%;
     text-align: left;
     height: 100vh;
-    padding: 20px 30px;
+    padding: 20px 20px;
     box-sizing: border-box;
 }
 
 .results-container {
-    width: 75%;
+    width: 68%;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -280,7 +292,7 @@ body {
 }
 
 .filter-container .filter {
-    width: 85%;
+    width: 100%;
     height: 60%;
     margin-top: 15px;
     padding: 10px;
@@ -311,23 +323,25 @@ body {
     display: flex;
 }
 
-.loadedhotels .imgPlaceholder {
-    width: 40%;
+.loadedhotels img {
+    width: 100%;
+    height: 100%;
 }
 
 .loadedhotels .details {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    /* width: 60%; */
 }
 
 .loadedhotels .details button {
-    width: 50%;
+    /* width: 50%; */
+
     background-color: var(--blue);
     color: #fff;
     font-size: 18px;
     padding: 12px 20px;
-    margin: 10px 0 0 0;
+    /* margin: 10px 0 0 0; */
     border-radius: 3px;
     border: none;
 }
@@ -337,3 +351,33 @@ body {
 }
 
 /* Loaded Flights & Hotels */
+.loadedIndivHotels {
+    margin-bottom: 20px;
+}
+
+.loadedIndivHotels button {
+    background-color: var(--blue);
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 3px;
+    border: none;
+}
+
+.loadedIndivHotels button:hover {
+    background-color: var(--darkBlue);
+}
+
+.loadedIndivHotels .results {
+    background: url('https://www.reisecheckliste.org/wp-content/uploads/2017/09/Reisecheckliste-Strandurlaub.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 5px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(74, 74, 74);
+    border-radius: 5px;
+    padding: 20px;
+    padding-right: 40px;
+    border-color: #000;
+    text-align: right;
+}

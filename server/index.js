@@ -2,7 +2,7 @@ PORT = 8000
 const express = require('express')
 const axios = require('axios')
 const cors = require('cors')
-const {MongoClient} = require('mongodb')
+const { MongoClient } = require('mongodb')
 
 const app = express()
 const uri = 'mongodb+srv://niklasminth:check24challenge@cluster0.cgwhtg9.mongodb.net/Cluster0?retryWrites=true&w=majority'
@@ -32,76 +32,113 @@ app.get('/hotels', async (req, res) => {
     }
 })
 
-// Get first 100 offers
-app.get('/offers', async (req, res) => {
+// Get offers for specific hotel
+app.get('/offersForHotel', async (req, res) => {
     const client = new MongoClient(uri)
+    const { id, outboundarrivalairport, departuredate, returndate, countadults, countchildren } = req.query
 
     try {
         await client.connect()
         const database = client.db('app-data')
         const hotels = database.collection('offers')
 
-        const returnedHotels = await hotels.find().limit(50).toArray()
-        res.send(returnedHotels)
+       
+        const returnedHotels = await hotels.aggregate([
+            {
+                $match: { hotelid: id, outboundarrivalairport: outboundarrivalairport, departuredate: { $regex: departuredate }, returndate: { $regex: returndate }, countadults: countadults, countchildren: countchildren }
+            }
+        ]).toArray()
 
+        console.log(returnedHotels)
+        res.send(returnedHotels)
     } finally {
         await client.close()
     }
 })
-// Get individual hotel
-app.get('/hotel', async (req, res) => {
+// Get offers for specific hotel
+app.get('/offersForFlightHotel', async (req, res) => {
     const client = new MongoClient(uri)
-    // const userId = req.query.userId
+    const { id, outboundarrivalairport,outbounddepartureairport, departuredate, returndate, countadults, countchildren } = req.query
 
     try {
         await client.connect()
         const database = client.db('app-data')
-        const hotels = database.collection('hotels')
+        const hotels = database.collection('offers')
 
-        const query = {category_stars: "4"}
-        const returnedHotels = await hotels.findOne(query)
+       
+        const returnedHotels = await hotels.aggregate([
+            {
+                $match: { hotelid: id, outbounddepartureairport: outbounddepartureairport,outboundarrivalairport: outboundarrivalairport, departuredate: { $regex: departuredate }, returndate: { $regex: returndate }, countadults: countadults, countchildren: countchildren }
+            }
+        ]).toArray()
+
+        console.log(returnedHotels)
         res.send(returnedHotels)
-
     } finally {
         await client.close()
     }
 })
 
-//Get Hotel Search
+//Get offers with Hotel Search
 app.get('/findhotels', async (req, res) => {
     const client = new MongoClient(uri)
-    const {outboundarrivalairport, departuredate, returndate, countadults, countchildren} = req.query
+    const { outboundarrivalairport, departuredate, returndate, countadults, countchildren } = req.query
 
     try {
         await client.connect()
         const database = client.db('app-data')
         const hotels = database.collection('offers')
 
-        const query = {outboundarrivalairport: outboundarrivalairport, departuredate: {$regex: departuredate}, returndate: {$regex: returndate}, countadults: countadults, countchildren: countchildren }
-        console.log(query)
-        const returnedHotels = await hotels.find(query).toArray()
-        res.send(returnedHotels)
+       
+        const returnedHotels = await hotels.aggregate([
+            {
+                $match: { outboundarrivalairport: outboundarrivalairport, departuredate: { $regex: departuredate }, returndate: { $regex: returndate }, countadults: countadults, countchildren: countchildren }
+            },
+            {
+                $group: {
+                    _id: '$hotelid',
+                    total: {
+                        $count: {}
+                    }
+                }
+            }
+        ]).toArray()
 
+        console.log(returnedHotels)
+        res.send(returnedHotels)
     } finally {
         await client.close()
     }
 })
 
-// Get Flight&Hotel Search
+// Get offers with Flight&Hotel Search
+//Get offers with Hotel Search
 app.get('/findflightshotels', async (req, res) => {
     const client = new MongoClient(uri)
-    const {outbounddepartureairport,outboundarrivalairport, departuredate, returndate, countadults, countchildren} = req.query
-    console.log(outbounddepartureairport,outboundarrivalairport,departuredate,returndate,countadults,countchildren)
+    const { outboundarrivalairport, outbounddepartureairport, departuredate, returndate, countadults, countchildren } = req.query
+
     try {
         await client.connect()
         const database = client.db('app-data')
         const hotels = database.collection('offers')
 
-        const query = {outbounddepartureairport: outbounddepartureairport, outboundarrivalairport: outboundarrivalairport, departuredate: {$regex: departuredate}, returndate: {$regex: returndate}, countadults: countadults, countchildren: countchildren }
-        console.log(query)
-        const returnedHotels = await hotels.find(query).sort().toArray()
-        res.send(returnedHotels)
+       
+        const returnedHotels = await hotels.aggregate([
+            {
+                $match: { outboundarrivalairport: outboundarrivalairport, outbounddepartureairport: outbounddepartureairport,departuredate: { $regex: departuredate }, returndate: { $regex: returndate }, countadults: countadults, countchildren: countchildren }
+            },
+            {
+                $group: {
+                    _id: '$hotelid',
+                    total: {
+                        $count: {}
+                    }
+                }
+            }
+        ]).toArray()
 
+        console.log(returnedHotels)
+        res.send(returnedHotels)
     } finally {
         await client.close()
     }
