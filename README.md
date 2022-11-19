@@ -54,4 +54,7 @@ As soon as the search for offers is started and the data is loaded, a rotating l
 
 ### Back-End
 
+#### Database
+The data from the CSV file is stored in the **MongoDB** database. Since I use the free version, there is a memory limit of 512MB per database. Because of this not all data is available in the DB. From the Hotels.csv file **2035 entries** are stored, from the Offers.csv **959999 entries**.
 
+ The entire backend can be found in the **server folder** in the **index.js file**. All requests are implemented here.
