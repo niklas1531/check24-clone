@@ -8,7 +8,7 @@ To run the application, clone the repository with the link (https://github.com/n
 ### Navigate into the client folder
 ![Navigate to Client Folder](./RUN-APPLICATION-IMAGES/NavigateClient.png)
 ### Run the following commands to install all packages
-npm init
+npm init <br />
 npm i
 ### Start the application
 npm run start
@@ -17,7 +17,7 @@ npm run start
 ### Navigate into the server folder
 ![Navigate to Server Folder](./RUN-APPLICATION-IMAGES/NavigateServer.png)
 ### Run the following commands to install all packages
-npm init
+npm init <br />
 npm i
 ### Start the application
 npm run start:backend
