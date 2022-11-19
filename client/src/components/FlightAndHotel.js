@@ -52,6 +52,7 @@ const FlightAndHotel = ({ showLoader, inputs, setInputs, setFlightsHotels }) => 
                     <div className="text-field-wrapper col-12 p-lr">
                         <label for='abflughafen'>Abflughafen</label>
                         <select value={inputs.outbounddepartureairport} onChange={e => setInputs(prev => ({ ...prev, ["outbounddepartureairport"]: e.target.value }))} name='outbounddepartureairport'>
+                            <option name=""></option>
                             <option name="AMS">AMS</option>
                             <option name="BER">BER</option>
                             <option name="BLL">BLL</option>
