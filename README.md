@@ -16,12 +16,12 @@ The website has a home page (**Home.js**) where you can see the search box with 
 
 #### ResultPage
 The destinations and departure airports can be selected via a dropdown, the date via a calendar view and the number of adults, children and rooms via a text field that only accepts numbers. When the user clicks on the blue button and all the fields are filled in, the search is started and the user is redirected to the next page (**ResultPage.js**), where the search window is still displayed on the left side, where entries can still be changed, and the results are displayed on the right side.
-![Resultpage](.README-IMAGES/Results-FH.png)
-![Resultpage](.README-IMAGES/Results-H.png)
+![Resultpage](./README-IMAGES/Results-FH.png)
+![Resultpage](./README-IMAGES/Results-H.png)
 
 #### Individual Hotel Offers
 By clicking on the "Zu den Angeboten" button, the offers specific to the selected hotel will appear.
-![Resultpage-Individual Offers](.README-IMAGES/Offers.png)
+![Resultpage-Individual Offers](./README-IMAGES/Offers.png)
 #### Inputs:
 <div display='flex'>
 <img src='./README-IMAGES/Input-Destination.png' width='30%'>
@@ -51,6 +51,7 @@ In the navigation bar, clicking on the Check24 logo will take the user to the ho
 As soon as the search for offers is started and the data is loaded, a rotating loading-circle appears. As soon as all results are loaded or you switch to the results page, the loading circle disappears.
 
 <img src='./README-IMAGES/Loader.png'>
+
 ### Back-End
 
 
