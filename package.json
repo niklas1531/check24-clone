@@ -1,0 +1,19 @@
+{
+  "name": "check24-challenge",
+  "version": "1.0.0",
+  "description": "## Video Showing all actions A video showing all the actions on the site can be found at this <a href=\"https://niklas1531.github.io/portfolio/#/projekte/check24\" target='_blank'>link</a>:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niklas1531/check24-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niklas1531/check24-challenge/issues"
+  },
+  "homepage": "https://github.com/niklas1531/check24-challenge#readme"
+}
