@@ -1,11 +1,10 @@
-PORT = 8000
 const express = require('express')
-const axios = require('axios')
 const cors = require('cors')
 const { MongoClient } = require('mongodb')
+const dotenv = require('dotenv')
 
 const app = express()
-const uri = 'mongodb+srv://niklasminth:check24challenge@cluster0.cgwhtg9.mongodb.net/Cluster0?retryWrites=true&w=majority'
+const uri = process.env.MONGODB_URI
 app.use(express.json())
 app.use(cors())
 
@@ -146,4 +145,4 @@ app.get('/findflightshotels', async (req, res) => {
 
 
 
-app.listen(PORT, console.log(`Server is running on PORT: ${PORT}`))
+app.listen(process.env.PORT, console.log(`Server is running on PORT: ${PORT}`))
