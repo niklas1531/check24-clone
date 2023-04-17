@@ -1,4 +1,4 @@
-# GenDev Holiday Challenge Niklas Minth
+# Check24 Clone
 
 ## Video Showing all actions
 A video showing all the actions on the site can be found at this <a href="https://niklas1531.github.io/portfolio/#/projekte/check24" target='_blank'>link</a>:
